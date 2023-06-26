@@ -5,14 +5,12 @@ import Section from './Section/Section';
 import Notification from './Notification/Notification';
 
 class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-            good: 0,
-            neutral: 0,
-            bad: 0
-        };
-    }
+    state = {
+        good: 0,
+        neutral: 0,
+        bad: 0
+    };
+
 
     handleFeedback = (type) => {
         this.setState((prevState) => ({
@@ -35,12 +33,13 @@ class App extends Component {
         const { good, neutral, bad } = this.state;
         const totalFeedback = this.countTotalFeedback();
         const positivePercentage = this.countPositiveFeedbackPercentage();
+        const options = Object.keys(this.state);
 
         return (
             <div>
                 <h1>Feedback App</h1>
                 <Section title="Leave Feedback">
-                    <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handleFeedback} />
+                    <FeedbackOptions options={options} onLeaveFeedback={this.handleFeedback} />
                 </Section>
                 <Section title="Statistics">
                     {totalFeedback > 0 ? (
